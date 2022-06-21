@@ -16,6 +16,7 @@
 
 #include "Misc.h"
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -785,17 +786,18 @@ void Crout(int d,double*S,double*D){
    }
 }
 void solveCrout(int d,double*LU,double*b,double*x){
-   double y[d];
-   for(int i=0;i<d;++i){
-      double sum=0.;
-      for(int k=0;k<i;++k)sum+=LU[i*d+k]*y[k];
-      y[i]=(b[i]-sum)/LU[i*d+i];
-   }
-   for(int i=d-1;i>=0;--i){
-      double sum=0.;
-      for(int k=i+1;k<d;++k)sum+=LU[i*d+k]*x[k];
-      x[i]=(y[i]-sum); // not dividing by diagonals
-   }
+	std::vector<int> y(d);
+	//double y[d];
+	for(int i=0;i<d;++i){
+		double sum=0.;
+		for(int k=0;k<i;++k)sum+=LU[i*d+k]*y[k];
+		y[i]=(b[i]-sum)/LU[i*d+i];
+	}
+	for(int i=d-1;i>=0;--i){
+		double sum=0.;
+		for(int k=i+1;k<d;++k)sum+=LU[i*d+k]*x[k];
+		x[i]=(y[i]-sum); // not dividing by diagonals
+	}
 }
 
 // One-function implementation of Crout LU Decomposition with 2D array inputs

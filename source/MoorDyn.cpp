@@ -36,6 +36,8 @@
 
 #ifdef WIN32
 
+#include <io.h>
+#include <fcntl.h>
 /// Console handle
 int hConHandle;
 /// Std output handle
@@ -109,9 +111,9 @@ int DECLDIR MoorDynInit(const double x[], const double xd[], const char *infilen
 
 		// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
 		// point to console as well
-		ios::sync_with_stdio();
+		std::ios::sync_with_stdio();
 		
-		cout << "(MoorDyn-initiated console window)" << endl;
+		std::cout << "(MoorDyn-initiated console window)" << std::endl;
 	}
 #endif
 

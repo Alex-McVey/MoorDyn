@@ -16,6 +16,7 @@
 
 #include "Misc.h"
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -722,7 +723,7 @@ void Crout(int d,double*S,double*D){
    }
 }
 void solveCrout(int d,double*LU,double*b,double*x){
-   double y[d];
+   std::vector<double> y(d);
    for(int i=0;i<d;++i){
       double sum=0.;
       for(int k=0;k<i;++k)sum+=LU[i*d+k]*y[k];

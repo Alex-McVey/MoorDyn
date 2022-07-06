@@ -43,7 +43,7 @@
 
 #ifdef OSX
  #include <sys/uio.h>
-#elif defined WIN32
+#elif defined _WIN64
  #include <windows.h>  // these are for guicon function RedirectIOToConsole
  #include <io.h>
 #endif
@@ -966,7 +966,7 @@ inline T dotProd3(const T *a, const T *b)
 }
 
 template <typename T>
-inline moordyn::real __attribute__((deprecated)) dotProd3(const vec& a, const T *b)
+inline moordyn::real __declspec(deprecated) dotProd3(const vec& a, const T *b)
 {
 	vec bb;
 	moordyn::array2vec(b, bb);
@@ -974,7 +974,7 @@ inline moordyn::real __attribute__((deprecated)) dotProd3(const vec& a, const T 
 }
 
 template <typename T>
-inline moordyn::real __attribute__((deprecated)) dotProd3(const T *a, const vec& b)
+inline moordyn::real __declspec(deprecated) dotProd3(const T *a, const vec& b)
 {
 	vec aa;
 	moordyn::array2vec(a, aa);
@@ -1063,10 +1063,10 @@ inline double crossProd(vector<T> &u, const T* v, T *out)
 void inverse3by3( vector< vector< double > > & minv, vector< vector< double > > & m);
 
 void Crout(int d,double*S,double*D);
-void __attribute__((deprecated)) solveCrout(int d,double*LU,double*b,double*x);
+void __declspec(deprecated) solveCrout(int d,double*LU,double*b,double*x);
 
 template <typename TwoD1, typename TwoD2>
-void __attribute__((deprecated)) LUsolve(int n, TwoD1& A, TwoD2& LU, double*b, double *y, double*x)
+void __declspec(deprecated) LUsolve(int n, TwoD1& A, TwoD2& LU, double*b, double *y, double*x)
 {
 	// Solves Ax=b for x
 	// LU contains LU matrices, y is a temporary vector
@@ -1108,8 +1108,8 @@ void __attribute__((deprecated)) LUsolve(int n, TwoD1& A, TwoD2& LU, double*b, d
 }
 
 // void LUsolve(int n, double **A,double **LU, double*b, double *y, double*x);
-void __attribute__((deprecated)) LUsolve3(double A[3][3], double x[3], double b[3]);
-void __attribute__((deprecated)) LUsolve6(const double A[6][6], double x[6], const double b[6]);
+void __declspec(deprecated) LUsolve3(double A[3][3], double x[3], double b[3]);
+void __declspec(deprecated) LUsolve6(const double A[6][6], double x[6], const double b[6]);
 
 /** @brief Compute 3x3 matrices determinant
  * @param m The matrix
@@ -1161,7 +1161,7 @@ inline double InvM3(T **m)
  * @note This function is way faster than any LU decomposition for 3x3 matrices
  */
 template <typename T>
-inline double __attribute__((deprecated)) Solve3(T **m, T *x, const T *b)
+inline double __declspec(deprecated) Solve3(T **m, T *x, const T *b)
 {
 	const double det = InvM3(m);
 	x[0] = dotProd3((const T*)m[0], b);

@@ -34,7 +34,7 @@
  *  @{
  */
 
-#ifdef WIN32
+#ifdef _WIN64
 
 /// Console handle
 int hConHandle;
@@ -66,7 +66,7 @@ MoorDyn md_singleton = NULL;
 
 int DECLDIR MoorDynInit(const double x[], const double xd[], const char *infilename)
 {
-#ifdef WIN32
+#ifdef _WIN64
 	// ------------ create console window for messages if none already available -----------------
 	// adapted from Andrew S. Tucker, "Adding Console I/O to a Win32 GUI App" in Windows Developer Journal, December 1997. source code at http://dslweb.nwnexus.com/~ast/dload/guicon.htm
 
@@ -109,9 +109,9 @@ int DECLDIR MoorDynInit(const double x[], const double xd[], const char *infilen
 
 		// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
 		// point to console as well
-		ios::sync_with_stdio();
+		std::ios::sync_with_stdio();
 		
-		cout << "(MoorDyn-initiated console window)" << endl;
+		std::cout << "(MoorDyn-initiated console window)" << std::endl;
 	}
 #endif
 
@@ -151,7 +151,7 @@ int DECLDIR MoorDynClose(void)
 	md_singleton = NULL;
 	std::cout << "   MoorDyn closed." << std::endl;
 
-#ifdef WIN32
+#ifdef _WIN64
 	if (OwnConsoleWindow == 1)  {
 		std::cout << "press enter to close: " << std::endl;
 		std::cin.get();

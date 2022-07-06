@@ -26,8 +26,10 @@ extern "C"
 {
 #endif
 
-#ifdef WIN32
+#ifdef _WIN64
     #include <windows.h>
+    #include <io.h>
+    #include <fcntl.h>
 #endif
 
 /** @defgroup new_c_api The C API
